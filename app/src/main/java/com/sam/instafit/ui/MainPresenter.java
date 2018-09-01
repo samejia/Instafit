@@ -1,15 +1,65 @@
 package com.sam.instafit.ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.sam.instafit.R;
+import com.sam.instafit.models.Datum;
+import com.sam.instafit.models.Result;
+import com.sam.instafit.network.NetworkClient;
+import com.sam.instafit.network.NetworkInterface;
 
-public class MainPresenter extends AppCompatActivity {
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
 
+public class MainPresenter implements MainPresenterInterface {
+
+    MainViewInterface mvi;
+    private String TAG = "MainPresenter";
+
+    public MainPresenter(MainViewInterface mvi) {
+        this.mvi = mvi;
+    }
+
+    @SuppressLint("CheckResult")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public void getMovies() {
+        getObservable().subscribeWith(getObserver());
+    }
+
+    public Observable<Result> getObservable(){
+        return NetworkClient.getRetrofit().create(NetworkInterface.class)
+                .getMovies()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public DisposableObserver<Datum> getObserver(){
+        return new DisposableObserver<Datum>() {
+
+            @Override
+            public void onNext(@NonNull Datum movieResponse) {
+                Log.d(TAG,"OnNext"+movieResponse.getId());
+                mvi.displayMovies(movieResponse);
+            }
+
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                Log.d(TAG,"Error"+e);
+                e.printStackTrace();
+                mvi.displayError("Error fetching Movie Data");
+            }
+
+            @Override
+            public void onComplete() {
+                Log.d(TAG,"Completed");
+            }
+        };
     }
 }
