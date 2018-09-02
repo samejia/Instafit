@@ -62,9 +62,9 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     @Override
     public void displayMovies(Result movieResponse) {
         if(movieResponse!=null) {
-            Log.d(TAG,movieResponse.getData().toString());
-
+            Log.d(TAG,movieResponse.getData().get(0).getName());
             adapter = new MoviesAdapter(movieResponse.getData(), MainActivity.this);
+            rvMovies.setLayoutManager(new LinearLayoutManager(MainActivity.this));
             rvMovies.setAdapter(adapter);
         }else{
             Log.d(TAG,"Movies response null");
@@ -77,6 +77,5 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         showToast(e);
 
     }
-
 
 }

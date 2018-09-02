@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,9 +39,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesHold
     public void onBindViewHolder(MoviesHolder holder, int position) {
 
         holder.tvTitle.setText(movieList.get(position).getName());
-        holder.tvOverview.setText(movieList.get(position).getDescription());
-        holder.tvReleaseDate.setText(movieList.get(position).getId());
-        Glide.with(context).load(movieList.get(position).getAvatar()).into(holder.ivMovie);
+        holder.tvOverview.setText(Html.fromHtml(movieList.get(position).getDescription()));
+       holder.tvReleaseDate.setText("Rating "+movieList.get(position).getRating().getRate().toString());
+      Glide.with(context).load(movieList.get(position).getAvatar()).into(holder.ivMovie);
     }
 
     @Override

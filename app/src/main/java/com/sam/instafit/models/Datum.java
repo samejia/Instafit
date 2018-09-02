@@ -28,6 +28,19 @@ public class Datum {
     @Expose
     private Rating rating;
 
+    public Datum() {
+    }
+
+    public Datum(Integer id, String name, String description, Boolean filterAvailable, String avatar, AvatarPictures avatarPictures, Rating rating) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.filterAvailable = filterAvailable;
+        this.avatar = avatar;
+        this.avatarPictures = avatarPictures;
+        this.rating = rating;
+    }
+
     public Integer getId() {
         return id;
     }

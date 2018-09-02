@@ -16,6 +16,15 @@ public class Result {
     @Expose
     private String message;
 
+    public Result() {
+    }
+
+    public Result(List<Datum> data, Integer code, String message) {
+        this.data = data;
+        this.code = code;
+        this.message = message;
+    }
+
     public List<Datum> getData() {
         return data;
     }

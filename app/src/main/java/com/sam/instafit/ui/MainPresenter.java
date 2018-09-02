@@ -18,7 +18,6 @@ import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 public class MainPresenter implements MainPresenterInterface {
-
     MainViewInterface mvi;
     private String TAG = "MainPresenter";
 
@@ -26,7 +25,6 @@ public class MainPresenter implements MainPresenterInterface {
         this.mvi = mvi;
     }
 
-    @SuppressLint("CheckResult")
     @Override
     public void getMovies() {
         getObservable().subscribeWith(getObserver());
@@ -39,15 +37,14 @@ public class MainPresenter implements MainPresenterInterface {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public DisposableObserver<Datum> getObserver(){
-        return new DisposableObserver<Datum>() {
+    public DisposableObserver<Result> getObserver(){
+        return new DisposableObserver<Result>() {
 
             @Override
-            public void onNext(@NonNull Datum movieResponse) {
-                Log.d(TAG,"OnNext"+movieResponse.getId());
+            public void onNext(@NonNull Result movieResponse) {
+                Log.d(TAG,"OnNext"+movieResponse.getMessage());
                 mvi.displayMovies(movieResponse);
             }
-
 
             @Override
             public void onError(@NonNull Throwable e) {
