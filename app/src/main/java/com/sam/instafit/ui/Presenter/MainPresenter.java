@@ -1,16 +1,13 @@
-package com.sam.instafit.ui;
+package com.sam.instafit.ui.Presenter;
 
-import android.annotation.SuppressLint;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.sam.instafit.R;
-import com.sam.instafit.models.Datum;
 import com.sam.instafit.models.Result;
 import com.sam.instafit.network.NetworkClient;
 import com.sam.instafit.network.NetworkInterface;
+import com.sam.instafit.ui.Views.MainPresenterInterface;
+import com.sam.instafit.ui.Views.MainViewInterface;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;

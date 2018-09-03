@@ -1,6 +1,5 @@
-package com.sam.instafit.ui;
+package com.sam.instafit.ui.Views;
 
-import com.sam.instafit.models.Datum;
 import com.sam.instafit.models.Result;
 
 public interface MainViewInterface {

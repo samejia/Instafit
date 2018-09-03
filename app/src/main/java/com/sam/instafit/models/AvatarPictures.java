@@ -4,7 +4,9 @@ package com.sam.instafit.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class AvatarPictures {
+import java.io.Serializable;
+
+public class AvatarPictures implements Serializable {
 
     @SerializedName("full_size")
     @Expose

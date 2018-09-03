@@ -1,12 +1,13 @@
 package com.sam.instafit.models;
 
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Datum implements Serializable {
+
+
+public class FavoriteInst implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -30,10 +31,11 @@ public class Datum implements Serializable {
     @Expose
     private Rating rating;
 
-    public Datum() {
+    public FavoriteInst() {
+
     }
 
-    public Datum(Integer id, String name, String description, Boolean filterAvailable, String avatar, AvatarPictures avatarPictures, Rating rating) {
+    public FavoriteInst(Integer id, String name, String description, Boolean filterAvailable, String avatar, AvatarPictures avatarPictures, Rating rating) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -42,6 +44,7 @@ public class Datum implements Serializable {
         this.avatarPictures = avatarPictures;
         this.rating = rating;
     }
+
 
     public Integer getId() {
         return id;
@@ -98,5 +101,4 @@ public class Datum implements Serializable {
     public void setRating(Rating rating) {
         this.rating = rating;
     }
-
 }

@@ -1,4 +1,4 @@
-package com.sam.instafit.ui;
+package com.sam.instafit.ui.Views;
 
 public interface MainPresenterInterface {
 
